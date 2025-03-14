@@ -14,7 +14,7 @@ public class DatabaseInitializer {
         String password;
 
         if (currentDatabase.equals("h2")) {
-            url = "jdbc:h2:mem:shoppinglist;DB_CLOSE_DELAY=-1"; // H2 в памяти
+            url = "jdbc:h2:mem:testdb"; // H2 в памяти
             user = "sa";
             password = "1234567";
         } else {

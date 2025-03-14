@@ -11,7 +11,7 @@ public class ShoppingListDAOImpl implements ShoppingListDAO {
         String password;
 
         if (DatabaseInitializer.getCurrentDatabase().equals("h2")) {
-            url = "jdbc:h2:mem:shoppinglist;DB_CLOSE_DELAY=-1";
+            url = "jdbc:h2:mem:testdb";
             user = "sa";
             password = "1234567";
         } else {

@@ -80,17 +80,17 @@ public class HelloController {
             String category = itemCategoryField.getText();
             int year = Integer.parseInt(yearField.getText());
 
+
             if (name.isEmpty() || category.isEmpty()) {
                 showAlert("Ошибка", "Поля 'Название' и 'Категория' не могут быть пустыми.");
                 return;
             }
-
-            // Проверка на високосный год
-            if (isLeapYear(year)) {
+            if (ShoppingItem.isLeapYear(year)) {
                 quantity *= 2; // Увеличиваем количество в два раза
             }
 
             ShoppingItem newItem = new ShoppingItem(shoppingListDAO.getAllItems().size() + 1, name, quantity, category);
+
             shoppingListDAO.addItem(newItem);
             refreshShoppingList();
             clearFields();
@@ -99,6 +99,7 @@ public class HelloController {
             showAlert("Ошибка", "Количество и год должны быть числами.");
         }
     }
+
 
     @FXML
     private void handleDeleteItem() {
@@ -196,8 +197,5 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    // Метод для проверки, является ли год високосным
-    private boolean isLeapYear(int year) {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
+
 }
