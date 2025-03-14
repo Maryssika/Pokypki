@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,9 +19,14 @@
     <Label text="Shopping List" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
     <HBox spacing="10">
+        <ComboBox fx:id="databaseComboBox" promptText="Выберите базу данных"/>
+    </HBox>
+
+    <HBox spacing="10">
         <TextField fx:id="itemNameField" promptText="Item Name"/>
         <TextField fx:id="itemQuantityField" promptText="Quantity"/>
         <TextField fx:id="itemCategoryField" promptText="Category"/>
+        <TextField fx:id="yearField" promptText="Год (для високосного года)"/>
         <Button text="Add Item" onAction="#handleAddItem"/>
     </HBox>
 
@@ -48,6 +54,11 @@
             </TableColumn>
         </columns>
     </TableView>
+
+    <HBox spacing="10">
+        <ComboBox fx:id="categoryFilterComboBox" promptText="Фильтр по категории"/>
+        <Button text="Применить фильтр" onAction="#handleFilterByCategory"/>
+    </HBox>
 
     <HBox spacing="10">
         <Button text="Delete Item" onAction="#handleDeleteItem"/>
