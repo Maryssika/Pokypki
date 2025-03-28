@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Инициализация базы данных
-        DatabaseInitializer.initializeDatabase();
+        DatabaseInitializer.initializeAllDatabases(); // Инициализируем все БД
 
         // Загрузка интерфейса
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
