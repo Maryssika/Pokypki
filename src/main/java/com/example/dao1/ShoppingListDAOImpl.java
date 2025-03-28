@@ -117,6 +117,7 @@ public class ShoppingListDAOImpl implements ShoppingListDAO {
             }
         } catch (SQLException e) {
             System.out.println("Ошибка при добавлении товара: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

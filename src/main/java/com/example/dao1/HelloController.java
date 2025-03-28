@@ -23,8 +23,8 @@ public class HelloController {
     @FXML
     private TextField itemCategoryField;
 
-    @FXML
-    private TextField yearField;
+//    @FXML
+//    private TextField yearField;
 
     @FXML
     private TableView<ShoppingItem> shoppingTable;
@@ -85,27 +85,46 @@ public class HelloController {
     private void handleAddItem() {
         try {
             String name = itemNameField.getText();
-            int quantity = Integer.parseInt(itemQuantityField.getText());
+            String quantityText = itemQuantityField.getText();
             String category = itemCategoryField.getText();
-            int year = Integer.parseInt(yearField.getText());
 
-
-            if (name.isEmpty() || category.isEmpty()) {
-                showAlert("Ошибка", "Поля 'Название' и 'Категория' не могут быть пустыми.");
+            // Проверка заполнения обязательных полей
+            if (name.isEmpty() || category.isEmpty() || quantityText.isEmpty()) {
+                showAlert("Ошибка", "Все поля должны быть заполнены");
                 return;
             }
-//            if (ShoppingItem.isLeapYear(year)) {
-//                quantity *= 2; // Увеличиваем количество в два раза
-//            }
 
-            ShoppingItem newItem = new ShoppingItem(shoppingListDAO.getAllItems().size() + 1, name, quantity, category);
+            // Проверка корректности числового значения
+            int quantity;
+            try {
+                quantity = Integer.parseInt(quantityText);
+                if (quantity <= 0) {
+                    showAlert("Ошибка", "Количество должно быть положительным числом");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                showAlert("Ошибка", "Количество должно быть числом");
+                return;
+            }
 
+            // Создаем новый товар (ID будет установлен базой данных)
+            ShoppingItem newItem = new ShoppingItem(0, name, quantity, category);
+
+            // Добавляем товар в базу данных
             shoppingListDAO.addItem(newItem);
+
+            // Обновляем список товаров
             refreshShoppingList();
+
+            // Очищаем поля ввода
             clearFields();
+
+            // Обновляем фильтр категорий
             updateCategoryFilter();
-        } catch (NumberFormatException e) {
-            showAlert("Ошибка", "Количество и год должны быть числами.");
+
+        } catch (Exception e) {
+            showAlert("Ошибка", "Не удалось добавить товар: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -195,7 +214,7 @@ public class HelloController {
         itemNameField.clear();
         itemQuantityField.clear();
         itemCategoryField.clear();
-        yearField.clear();
+//        yearField.clear();
     }
 
     private void showAlert(String title, String message) {
