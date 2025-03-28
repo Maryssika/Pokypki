@@ -224,6 +224,27 @@ public class HelloController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
+//    @FXML
+//    private void handleCheckYear() {
+//        String yearText = yearField.getText();
+//
+//        if (yearText.isEmpty()) {
+//            showAlert("Ошибка", "Пожалуйста, введите год");
+//            return;
+//        }
+//
+//        try {
+//            int year = Integer.parseInt(yearText);
+//            boolean isLeap = ShoppingItem.isLeapYear(year);
+//
+//            Alert alert = new Alert(isLeap ? Alert.AlertType.INFORMATION : Alert.AlertType.WARNING);
+//            alert.setTitle("Результат проверки");
+//            alert.setHeaderText(null);
+//            alert.setContentText(year + (isLeap ? " - високосный год" : " - не високосный год"));
+//            alert.showAndWait();
+//
+//        } catch (NumberFormatException e) {
+//            showAlert("Ошибка", "Год должен быть целым числом");
+//        }
+//    }
 }
