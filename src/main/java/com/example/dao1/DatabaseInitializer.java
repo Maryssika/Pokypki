@@ -14,7 +14,7 @@ public class DatabaseInitializer {
         String password;
 
         if (currentDatabase.equals("h2")) {
-            url = "jdbc:h2:mem:testdb"; // H2 в памяти
+            url = "jdbc:h2:tcp://localhost/~/test"; // H2 в памяти
             user = "sa";
             password = "1234567";
         } else {
@@ -34,8 +34,7 @@ public class DatabaseInitializer {
                         + " category VARCHAR(100) NOT NULL\n"
                         + ");";
                 stmt.execute(sql);
-                System.out.println("Таблица shopping_items создана или уже существует.");
-            }
+               }
         } catch (SQLException e) {
             System.out.println("Ошибка при создании таблицы: " + e.getMessage());
         }

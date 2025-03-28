@@ -11,7 +11,7 @@ public class ShoppingListDAOImpl implements ShoppingListDAO {
         String password;
 
         if (DatabaseInitializer.getCurrentDatabase().equals("h2")) {
-            url = "jdbc:h2:mem:testdb";
+            url = "jdbc:h2:tcp://localhost/~/test";
             user = "sa";
             password = "1234567";
         } else {
@@ -103,11 +103,18 @@ public class ShoppingListDAOImpl implements ShoppingListDAO {
         String sql = "INSERT INTO shopping_items(name, quantity, category) VALUES(?,?,?)";
 
         try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, item.getName());
             pstmt.setInt(2, item.getQuantity());
             pstmt.setString(3, item.getCategory());
             pstmt.executeUpdate();
+
+            // Получаем сгенерированный ID
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             System.out.println("Ошибка при добавлении товара: " + e.getMessage());
         }

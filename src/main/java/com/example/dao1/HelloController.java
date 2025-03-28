@@ -52,6 +52,7 @@ public class HelloController {
 
     @FXML
     public void initialize() {
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -72,6 +73,14 @@ public class HelloController {
         updateCategoryFilter();
     }
 
+   //метод для отмены фильтра
+    @FXML
+    private void handleClearFilter() {
+        categoryFilterComboBox.getSelectionModel().clearSelection();
+        refreshShoppingList();
+    }
+
+
     @FXML
     private void handleAddItem() {
         try {
@@ -85,9 +94,9 @@ public class HelloController {
                 showAlert("Ошибка", "Поля 'Название' и 'Категория' не могут быть пустыми.");
                 return;
             }
-            if (ShoppingItem.isLeapYear(year)) {
-                quantity *= 2; // Увеличиваем количество в два раза
-            }
+//            if (ShoppingItem.isLeapYear(year)) {
+//                quantity *= 2; // Увеличиваем количество в два раза
+//            }
 
             ShoppingItem newItem = new ShoppingItem(shoppingListDAO.getAllItems().size() + 1, name, quantity, category);
 

@@ -6,6 +6,10 @@ public class ShoppingItem {
     private int quantity;
     private String category;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public ShoppingItem(int id, String name, int quantity, String category) {
         this.id = id;
         this.name = name;
@@ -38,8 +42,8 @@ public class ShoppingItem {
                 ", category='" + category + '\'' +
                 '}';
     }
-    // Метод для проверки, является ли год високосным
-    public static boolean isLeapYear(int year) {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
+//        // Метод для проверки, является ли год високосным
+//    public static boolean isLeapYear(int year) {
+//            return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+//        }
 }

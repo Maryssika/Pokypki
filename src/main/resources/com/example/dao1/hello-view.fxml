@@ -26,8 +26,8 @@
         <TextField fx:id="itemNameField" promptText="Item Name"/>
         <TextField fx:id="itemQuantityField" promptText="Quantity"/>
         <TextField fx:id="itemCategoryField" promptText="Category"/>
-        <TextField fx:id="yearField" promptText="Год (для високосного года)"/>
-        <Button text="Add Item" onAction="#handleAddItem"/>
+<!--        <TextField fx:id="yearField" promptText="Год (для високосного года)"/>-->
+        <Button text="Добавить товар" onAction="#handleAddItem"/>
     </HBox>
 
     <TableView fx:id="shoppingTable" prefHeight="200" prefWidth="400">
@@ -58,11 +58,11 @@
     <HBox spacing="10">
         <ComboBox fx:id="categoryFilterComboBox" promptText="Фильтр по категории"/>
         <Button text="Применить фильтр" onAction="#handleFilterByCategory"/>
+        <Button text="Сбросить фильтр" onAction="#handleClearFilter"/>
     </HBox>
-
     <HBox spacing="10">
-        <Button text="Delete Item" onAction="#handleDeleteItem"/>
-        <Button text="Update Item" onAction="#handleUpdateItem"/>
-        <Button text="Sort by Category" onAction="#handleSortByCategory"/>
+        <Button text="Удалить товар" onAction="#handleDeleteItem"/>
+        <Button text="Обновить товар" onAction="#handleUpdateItem"/>
+        <Button text="Сортировать по категориям" onAction="#handleSortByCategory"/>
     </HBox>
 </VBox>
