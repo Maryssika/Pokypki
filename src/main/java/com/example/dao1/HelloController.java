@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HelloController {
+
     @FXML private TextField itemNameField;
     @FXML private TextField itemQuantityField;
     @FXML private TextField itemCategoryField;
