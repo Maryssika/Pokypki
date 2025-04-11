@@ -25,3 +25,12 @@
 ## Тестирование программы:
 
 [тестирование.docx](..%2F..%2FDesktop%2F%D0%A3%D1%87%D0%B5%D0%B1%D0%B0%2F%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.docx)
+
+## Архитектура
+![1](https://github.com/user-attachments/assets/9addde18-6079-4cef-98e6-29ce869328f9)
+
+## Дкмонстрация работы программы
+
+![image](https://github.com/user-attachments/assets/0acd7c28-10cd-47f9-a7f6-06269bed4daa)
+
+
