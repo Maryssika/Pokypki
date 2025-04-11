@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.Comparator;
 import java.util.List;
 
 public class HelloController {
 
+    private final String tipsforCimbobocs = "Выберите базу данных";
     @FXML private TextField itemNameField;
     @FXML private TextField itemQuantityField;
     @FXML private TextField itemCategoryField;
@@ -27,6 +27,10 @@ public class HelloController {
 
     @FXML
     public void initialize() {
+
+        Tooltip tooltip = new Tooltip(tipsforCimbobocs);
+       databaseComboBox.setTooltip(tooltip);
+
         // Инициализация таблицы
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
