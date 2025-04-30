@@ -1,20 +1,23 @@
 package com.example.dao1;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseInitializer {
+    private static final Dotenv dotenv = Dotenv.load();
+
     public static void initializeAllDatabases() {
         initializePostgreSQL();
         initializeH2();
     }
 
     private static void initializePostgreSQL() {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-        String user = "postgres";
-        String password = "1234567";
+        String url = dotenv.get("POSTGRES_URL");
+        String user = dotenv.get("POSTGRES_USER");
+        String password = dotenv.get("POSTGRES_PASSWORD");
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement()) {
@@ -28,9 +31,9 @@ public class DatabaseInitializer {
     }
 
     private static void initializeH2() {
-        String url = "jdbc:h2:tcp://localhost/~/test";
-        String user = "sa";
-        String password = "1234567";
+        String url = dotenv.get("H2_URL");
+        String user = dotenv.get("H2_USER");
+        String password = dotenv.get("H2_PASSWORD");
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement()) {

@@ -1,13 +1,15 @@
 package com.example.dao1;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostgreSQLDAO implements ShoppingListDAO {
-    private final String url = "jdbc:postgresql://localhost:5432/postgres";
-    private final String user = "postgres";
-    private final String password = "1234567";
+    private static final Dotenv dotenv = Dotenv.load();
+    private final String url = dotenv.get("POSTGRES_URL");
+    private final String user = dotenv.get("POSTGRES_USER");
+    private final String password = dotenv.get("POSTGRES_PASSWORD");
 
     private Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
